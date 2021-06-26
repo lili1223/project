@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>测试一下</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 80%; }
+table       { font-size: 100%; }
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+</script>
+<div class='heading'>
+<h1 style="font-family: Microsoft YaHei">测试一下</h1>
+<p class='attribute'><strong>测试人员 : </strong> lxl</p>
+<p class='attribute'><strong>开始时间 : </strong> 2021-06-21 00:16:01</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:02.355557</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 6，通过 5，失败 1，通过率= 83.33%</p>
+
+<p class='description'>login_case</p>
+</div>
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>通过率(83.33%)</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败(1)</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过(5)</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有(6)</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='failClass warning'>
+    <td>test_case.test_api.TestHttpRequest</td>
+    <td class="text-center">6</td>
+    <td class="text-center">5</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',6)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='pt1_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_api_1</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_1' style='background-color: #696969' >通过</button>
+    <div id='div_pt1_1' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_1' style='background-color: #696969'>通过</button>
+    <div id='div_pt1_1' class="collapse in">
+    <pre>
+    
+pt1_1: D:\python37\lib\site-packages\urllib3\connectionpool.py:986: InsecureRequestWarning: Unverified HTTPS request is being made to host '127.0.0.1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+请求头： {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '66'}
+{'case_id': 1, 'title': '正常登录', 'url': 'https://wry-test-jh.iauto360.cn/pc/user/bizuser/pwd-login', 'data': '{"password":"84ea34b048b95c3a985f95278b8b75ed","account":"820573"}', 'method': 'post', 'expected': 200}
+请求返回的结果是：{'code': 200, 'data': {'userSex': 1, 'isPush': '0', 'headImg': 'http://yame-o2o-oss.iauto360.cn/common_0/5/9c89-8f15-466c-8324-86d570d044e1_20200527_840fd8f3-b818-4d9c-859e-4d813b4206aa.jpeg', 'nickName': None, 'companyName': '动动测试总店', 'rolesName': '门店管理员,智汇集客角色', 'enAccount': 'h7%C3%A6%C3%8DGcCb', 'lgiName': None, 'changePwdN': 0, 'userName': '武动动', 'token': '8c15687d68991971e328eb030e141057', 'showNoviceGuide': 0, 'regionId': 440106, 'userMobile': '13570371437', 'expiration': 30, 'account': '820573', 'signSalt': '6b783220-086d-42c7-b0e8-3c82ae76e595'}, 'message': ''}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_2' class='none'>
+    <td class='failCase'><div class='testcase'>test_api_2</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_2' style='background-color: #696969' >失败</button>
+    <div id='div_ft1_2' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_2' style='background-color: #696969'>失败</button>
+    <div id='div_ft1_2' class="collapse in">
+    <pre>
+    
+ft1_2: D:\python37\lib\site-packages\urllib3\connectionpool.py:986: InsecureRequestWarning: Unverified HTTPS request is being made to host '127.0.0.1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+请求头： {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '208', 'token': '8c15687d68991971e328eb030e141057'}
+{'case_id': 2, 'title': '创建成功', 'url': 'https://wry-test-jh.iauto360.cn/pc/coupon/shop/coupon/save', 'data': '{"name":"test00011","marketPrice":1,"payPrice":1,"settlePrice":1,"categoryId":"361150085767664384","useValidate":1,"serviceArr":["9","9001","361150085767664384"],"showArea":1,"type":0,"storeAccount":"820573"}', 'method': 'post', 'expected': 200}
+出错啦，错误是：200 != 400
+请求返回的结果是：{'code': 400, 'data': None, 'message': '已存在该名称的服务券'}
+Traceback (most recent call last):
+  File "D:\python37\lib\site-packages\ddt.py", line 182, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\11858\PycharmProjects\Project\test_case\test_api.py", line 40, in test_api
+    raise e
+  File "C:\Users\11858\PycharmProjects\Project\test_case\test_api.py", line 35, in test_api
+    self.assertEqual(item['expected'],res.json()['code'])
+AssertionError: 200 != 400
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_api_3</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_3' style='background-color: #696969' >通过</button>
+    <div id='div_pt1_3' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_3' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_3' style='background-color: #696969'>通过</button>
+    <div id='div_pt1_3' class="collapse in">
+    <pre>
+    
+pt1_3: D:\python37\lib\site-packages\urllib3\connectionpool.py:986: InsecureRequestWarning: Unverified HTTPS request is being made to host '127.0.0.1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+请求头： {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '205', 'token': '8c15687d68991971e328eb030e141057'}
+{'case_id': 3, 'title': '创建的券已存在', 'url': 'https://wry-test-jh.iauto360.cn/pc/coupon/shop/coupon/save', 'data': '{"name":"test01","marketPrice":1,"payPrice":1,"settlePrice":1,"categoryId":"361150085767664384","useValidate":1,"serviceArr":["9","9001","361150085767664384"],"showArea":1,"type":0,"storeAccount":"820573"}', 'method': 'post', 'expected': 400}
+请求返回的结果是：{'code': 400, 'data': None, 'message': '已存在该名称的服务券'}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_4' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_api_4</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_4' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_4' style='background-color: #696969' >通过</button>
+    <div id='div_pt1_4' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_4' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_4' style='background-color: #696969'>通过</button>
+    <div id='div_pt1_4' class="collapse in">
+    <pre>
+    
+pt1_4: D:\python37\lib\site-packages\urllib3\connectionpool.py:986: InsecureRequestWarning: Unverified HTTPS request is being made to host '127.0.0.1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+请求头： {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '199', 'token': '8c15687d68991971e328eb030e141057'}
+{'case_id': 4, 'title': '不输入券名称创建', 'url': 'https://wry-test-jh.iauto360.cn/pc/coupon/shop/coupon/save', 'data': '{"name":"","marketPrice":1,"payPrice":1,"settlePrice":1,"categoryId":"361150085767664384","useValidate":1,"serviceArr":["9","9001","361150085767664384"],"showArea":1,"type":0,"storeAccount":"820573"}', 'method': 'post', 'expected': 400}
+请求返回的结果是：{'code': 400, 'data': {}, 'message': '服务券名称不能为空'}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_5' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_api_5</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_5' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_5' style='background-color: #696969' >通过</button>
+    <div id='div_pt1_5' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_5' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_5' style='background-color: #696969'>通过</button>
+    <div id='div_pt1_5' class="collapse in">
+    <pre>
+    
+pt1_5: D:\python37\lib\site-packages\urllib3\connectionpool.py:986: InsecureRequestWarning: Unverified HTTPS request is being made to host '127.0.0.1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+请求头： {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '207', 'token': '8c15687d68991971e328eb030e141057'}
+{'case_id': 5, 'title': '售价为0', 'url': 'https://wry-test-jh.iauto360.cn/pc/coupon/shop/coupon/save', 'data': '{"name":"test0001","marketPrice":0,"payPrice":0,"settlePrice":0,"categoryId":"361150085767664384","useValidate":1,"serviceArr":["9","9001","361150085767664384"],"showArea":1,"type":0,"storeAccount":"820573"}', 'method': 'post', 'expected': 400}
+请求返回的结果是：{'code': 400, 'data': None, 'message': '已存在该名称的服务券'}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_6' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_api_6</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_6' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_6' style='background-color: #696969' >通过</button>
+    <div id='div_pt1_6' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_6' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_6' style='background-color: #696969'>通过</button>
+    <div id='div_pt1_6' class="collapse in">
+    <pre>
+    
+pt1_6: D:\python37\lib\site-packages\urllib3\connectionpool.py:986: InsecureRequestWarning: Unverified HTTPS request is being made to host '127.0.0.1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+请求头： {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '207', 'token': '8c15687d68991971e328eb030e141057'}
+{'case_id': 6, 'title': '结算价大于支付价格', 'url': 'https://wry-test-jh.iauto360.cn/pc/coupon/shop/coupon/save', 'data': '{"name":"test0001","marketPrice":1,"payPrice":1,"settlePrice":3,"categoryId":"361150085767664384","useValidate":1,"serviceArr":["9","9001","361150085767664384"],"showArea":1,"type":0,"storeAccount":"820573"}', 'method': 'post', 'expected': 400}
+请求返回的结果是：{'code': 400, 'data': None, 'message': '售价不能小于结算价！'}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>6</td>
+    <td>5</td>
+    <td>1</td>
+    <td>0</td>
+    <td>通过率：83.33%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+</body>
+</html>
